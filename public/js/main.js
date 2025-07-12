@@ -466,6 +466,24 @@ window.rewearChatbot = new ReWearChatbot();
 // Initialize the app when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     window.app = new ReWearApp();
+
+    // Sidebar toggle logic
+    const sidebar = document.getElementById('sidebar');
+    const sidebarToggle = document.getElementById('sidebar-toggle');
+    function setSidebarInitialState() {
+        if (window.innerWidth < 992) {
+            sidebar.classList.add('collapsed');
+        } else {
+            sidebar.classList.remove('collapsed');
+        }
+    }
+    setSidebarInitialState();
+    window.addEventListener('resize', setSidebarInitialState);
+    if (sidebarToggle && sidebar) {
+        sidebarToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('collapsed');
+        });
+    }
 });
 
 // Global utility functions

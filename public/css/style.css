@@ -1092,3 +1092,66 @@ a:hover {
 .chat-msg {
   color: #000 !important;
 } 
+
+/* Sidebar Toggle Button */
+.sidebar-toggle {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1100;
+  width: 40px;
+  height: 40px;
+  background: #222;
+  border: none;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.sidebar-toggle span {
+  display: block;
+  width: 24px;
+  height: 3px;
+  background: #fff;
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+
+/* Hide toggle on large screens if desired */
+@media (min-width: 992px) {
+  .sidebar-toggle {
+    display: none;
+  }
+}
+
+/* Collapsed Sidebar */
+.sidebar.collapsed {
+  transform: translateX(-260px);
+  transition: transform 0.3s cubic-bezier(.4,2,.6,1);
+}
+.sidebar {
+  transition: transform 0.3s cubic-bezier(.4,2,.6,1);
+}
+
+/* Overlay for mobile when sidebar is open */
+@media (max-width: 991px) {
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 250px;
+    z-index: 1050;
+    background: #fff;
+    box-shadow: 2px 0 12px rgba(0,0,0,0.08);
+    height: 100vh;
+    overflow-y: auto;
+  }
+  .sidebar.collapsed {
+    transform: translateX(-260px);
+  }
+} 

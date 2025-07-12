@@ -1075,3 +1075,8 @@ a:hover {
 .chat-input button:hover {
     background: #388e3c;
 } 
+
+/* Chatbot message font color */
+.chat-msg {
+  color: #000 !important;
+} 

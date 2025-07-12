@@ -386,6 +386,83 @@ class ReWearApp {
     }
 }
 
+// --- AI Chatbot Logic ---
+class ReWearChatbot {
+    constructor() {
+        this.isOpen = false;
+        this.messages = [];
+        this.fab = document.getElementById('chat-fab');
+        this.window = document.getElementById('chat-window');
+        this.input = document.getElementById('chat-input-box');
+        this.sendBtn = document.getElementById('chat-send-btn');
+        this.messagesContainer = document.getElementById('chat-messages');
+        this.init();
+    }
+    init() {
+        if (this.fab) this.fab.addEventListener('click', () => this.toggleChat());
+        if (this.sendBtn) this.sendBtn.addEventListener('click', () => this.handleSend());
+        if (this.input) this.input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') this.handleSend();
+        });
+        this.addWelcomeMessage();
+    }
+    toggleChat() {
+        this.isOpen = !this.isOpen;
+        if (this.window) this.window.style.display = this.isOpen ? 'flex' : 'none';
+        if (this.isOpen && this.input) this.input.focus();
+    }
+    handleSend() {
+        const msg = this.input.value.trim();
+        if (!msg) return;
+        this.addMessage(msg, 'user');
+        this.input.value = '';
+        setTimeout(() => this.handleBotResponse(msg), 500);
+    }
+    addMessage(text, sender) {
+        const msgDiv = document.createElement('div');
+        msgDiv.className = sender === 'user' ? 'chat-msg user' : 'chat-msg bot';
+        msgDiv.innerHTML = `<span>${text}</span>`;
+        this.messagesContainer.appendChild(msgDiv);
+        this.messagesContainer.scrollTop = this.messagesContainer.scrollHeight;
+    }
+    addWelcomeMessage() {
+        this.addMessage(`👋 Hi there! I'm ReWear's AI assistant. I can help you with:<br>
+- Finding the perfect size fit<br>
+- Generating swap invoices<br>
+- Checking item availability<br>
+- Recommending items based on your style<br>
+- Answering questions about ReWear<br><br>
+What would you like to know?<br>
+<button onclick="window.rewearChatbot.quickAction('size')">Check Sizes</button> <button onclick="window.rewearChatbot.quickAction('invoice')">Generate Invoice</button> <button onclick="window.rewearChatbot.quickAction('availability')">Find Similar Items</button> <button onclick="window.rewearChatbot.quickAction('help')">Platform Help</button>`, 'bot');
+    }
+    quickAction(type) {
+        if (type === 'size') {
+            this.handleBotResponse('size');
+        } else if (type === 'invoice') {
+            this.handleBotResponse('invoice');
+        } else if (type === 'availability') {
+            this.handleBotResponse('available');
+        } else {
+            this.handleBotResponse('help');
+        }
+    }
+    handleBotResponse(msg) {
+        const message = msg.toLowerCase();
+        if (message.includes('size')) {
+            this.addMessage(`I'd be happy to help! Could you tell me:<br>1. Your usual size in jackets (XS, S, M, L, XL)<br>2. How do you prefer your jackets to fit? (Tight, Regular, Loose)<br>3. Your measurements (chest/bust in inches) - optional`, 'bot');
+        } else if (message.includes('invoice')) {
+            this.addMessage(`I'll create an invoice for your recent swap! Let me pull up the details:<br><br>🧾 <b>Swap Invoice #SW-2025-001</b><br>Date: July 12, 2025<br><br><b>Items Exchanged:</b><br>Your item: Vintage Band T-Shirt (Size M)<br>Received: Denim Jacket (Size M)<br><br><b>Points Transaction:</b><br>Points used: 25<br>Points earned: 30<br>Net points: +5<br><br>Would you like me to email this invoice to you?`, 'bot');
+        } else if (message.includes('available')) {
+            this.addMessage(`Let me check our current inventory for large hoodies...<br><br>🔍 <b>Found 8 hoodies in size Large:</b><br>1. <b>Gray Nike Hoodie</b> - Excellent condition - 35 points<br>2. <b>Black Champion Hoodie</b> - Good condition - 25 points<br>3. <b>Blue Vintage Hoodie</b> - Fair condition - 15 points<br>...<br>Would you like to see more details about any of these items?`, 'bot');
+        } else if (message.includes('help')) {
+            this.addMessage(`You can ask me about:<br>- How swapping works<br>- How to earn points<br>- How to list an item<br>- How to check item condition<br>- And more!`, 'bot');
+        } else {
+            this.addMessage(`I'm here to help! Try asking about size recommendations, swap invoices, or item availability.`, 'bot');
+        }
+    }
+}
+window.rewearChatbot = new ReWearChatbot();
+
 // Initialize the app when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     window.app = new ReWearApp();

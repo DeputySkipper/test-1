@@ -53,23 +53,40 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1>Swap, Share, Sustain</h1>
-                    <p>Join the sustainable fashion revolution. Exchange clothing items with others and reduce textile waste while building a community of conscious consumers.</p>
-                    <div class="hero-actions">
-                        <a href="/browse" class="btn btn-primary">Start Browsing</a>
-                        <a href="/register" class="btn btn-secondary">Join ReWear</a>
-                    </div>
-                </div>
-                <div class="hero-image">
-                    <img src="images/hero-clothing.jpg" alt="Sustainable Fashion">
-                </div>
-            </div>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="nav-section">
+        <div class="nav-item">Shirts</div>
+        <div class="nav-item">Dresses</div>
+        <div class="nav-item active">Jeans
+          <div class="sub-nav">
+            <div class="sub-nav-item">Skinny</div>
+            <div class="sub-nav-item">Relaxed</div>
+            <div class="sub-nav-item">Bootcut</div>
+            <div class="sub-nav-item">Straight</div>
+          </div>
         </div>
+        <div class="nav-item">Jackets</div>
+        <div class="nav-item">Activewear</div>
+        <div class="nav-item">Blazers</div>
+        <div class="nav-item">Shoes</div>
+        <div class="nav-item">Accessories</div>
+        <div class="nav-item">Vintage</div>
+      </div>
+      <div class="nav-section">
+        <div class="nav-item">Contact</div>
+        <div class="nav-item">Newsletter</div>
+        <div class="nav-item">Subscribe</div>
+      </div>
+    </aside>
+
+    <!-- Hero Section (overhauled) -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <h1 class="hero-title">Swap sustainably</h1>
+        <p class="hero-subtitle">REDEFINE YOUR WARDROBE</p>
+        <button class="hero-cta">START SWAPPING</button>
+      </div>
     </section>
 
     <!-- Categories Section -->
@@ -132,6 +149,33 @@
                 </div>
             </div>
         </div>
+    </section>
+
+    <!-- Product Grid (sample, replace with dynamic as needed) -->
+    <section class="product-grid">
+      <div class="grid-header">
+        <span class="item-count">8 items</span>
+        <div class="points-display">Points: <span id="userPoints">0</span></div>
+      </div>
+      <div class="product-grid-container">
+        <!-- Example Product Card -->
+        <div class="product-card">
+          <span class="swap-badge">Swap</span>
+          <span class="condition-badge">Excellent</span>
+          <img class="product-image" src="images/jeans1.jpeg" alt="Skinny Jeans">
+          <div class="product-info">
+            <div class="product-title">Skinny Jeans</div>
+            <div class="points-display">30 pts</div>
+            <div class="size-availability">Sizes: S, M, L</div>
+            <div class="sustainability-score">🌱 8.5</div>
+            <div class="swap-toggle">
+              <button class="btn-primary">Swap</button>
+              <button class="btn-secondary">Buy</button>
+            </div>
+          </div>
+        </div>
+        <!-- Add more product cards as needed -->
+      </div>
     </section>
 
     <!-- Featured Items Section -->
@@ -276,6 +320,21 @@
             </div>
         </div>
     </footer>
+
+    <!-- Floating Chatbot Button and Window -->
+    <div class="chat-fab" id="chat-fab">
+      <i class="fas fa-comments"></i>
+    </div>
+    <div class="chat-window" id="chat-window" style="display:none;">
+      <div class="chat-header">
+        <i class="fas fa-robot"></i> ReWear Assistant
+      </div>
+      <div class="chat-messages" id="chat-messages"></div>
+      <div class="chat-input">
+        <input type="text" id="chat-input-box" placeholder="Type your message...">
+        <button id="chat-send-btn"><i class="fas fa-paper-plane"></i></button>
+      </div>
+    </div>
 
     <script src="js/main.js"></script>
     <script src="js/auth.js"></script>

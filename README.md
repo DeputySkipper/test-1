@@ -72,7 +72,4 @@ The app will be available at `http://localhost:3000` by default.
 ## Troubleshooting
 - If images do not appear, verify the filenames and extensions in `public/images/` match those referenced in the code.
 - If the backend features (login, registration) do not work, ensure your environment variables are set correctly and MongoDB is accessible.
-- For deployment issues, check the Vercel build logs and environment variable configuration.
-
-## License
-This project is licensed under the MIT License. 
+- For deployment issues, check the Vercel build logs and environment variable configuration. 

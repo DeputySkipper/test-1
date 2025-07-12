@@ -1093,12 +1093,12 @@ a:hover {
   color: #000 !important;
 } 
 
-/* Sidebar Toggle Button */
+/* Sidebar Toggle Button - always visible for testing */
 .sidebar-toggle {
   position: fixed;
   top: 20px;
   left: 20px;
-  z-index: 1100;
+  z-index: 2001;
   width: 40px;
   height: 40px;
   background: #222;
@@ -1121,12 +1121,7 @@ a:hover {
   transition: all 0.3s;
 }
 
-/* Hide toggle on large screens if desired */
-@media (min-width: 992px) {
-  .sidebar-toggle {
-    display: none;
-  }
-}
+/* Remove media query hiding the toggle on large screens */
 
 /* Collapsed Sidebar */
 .sidebar.collapsed {
@@ -1135,6 +1130,7 @@ a:hover {
 }
 .sidebar {
   transition: transform 0.3s cubic-bezier(.4,2,.6,1);
+  z-index: 2000;
 }
 
 /* Overlay for mobile when sidebar is open */
@@ -1145,7 +1141,7 @@ a:hover {
     top: 0;
     bottom: 0;
     width: 250px;
-    z-index: 1050;
+    z-index: 2000;
     background: #fff;
     box-shadow: 2px 0 12px rgba(0,0,0,0.08);
     height: 100vh;
